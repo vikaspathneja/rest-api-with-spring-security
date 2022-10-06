@@ -17,7 +17,7 @@ import lombok.Data;
 //Table - User
 @Entity
 @Data
-//@RedisHash
+@RedisHash("User")
 public class User implements UserDetails {
 
 	/**
@@ -39,14 +39,6 @@ public class User implements UserDetails {
 	private boolean accountNonExpired;
 
 	private boolean enabled;
-
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
 
 	private String role;
 
@@ -132,5 +124,15 @@ public class User implements UserDetails {
 			return true;
 		return false;
 	}
+	
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 
 }

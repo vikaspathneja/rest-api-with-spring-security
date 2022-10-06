@@ -45,7 +45,7 @@ public class Appconfig {
 		   rt.setKeySerializer(new StringRedisSerializer());
 		   rt.setHashKeySerializer(new StringRedisSerializer());
 		   rt.setHashKeySerializer(new JdkSerializationRedisSerializer());
-		   rt.setHashValueSerializer(new JdkSerializationRedisSerializer());	
+		   rt.setValueSerializer(new JdkSerializationRedisSerializer());	
 		   rt.setEnableTransactionSupport(true);
 		   rt.afterPropertiesSet();
 		   return rt;

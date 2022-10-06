@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 @JsonDeserialize(as = User.class)
-@EnableRedisRepositories
+//@EnableRedisRepositories
 public interface UserRepository extends JpaRepository<User, Long>{
 	Optional<User> findUserByUsername(String username); 	
 
