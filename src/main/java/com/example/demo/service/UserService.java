@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.User;
@@ -35,9 +36,16 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	SessionFactory sf;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder2;
 	
 	public User insert(User user){
-		return repo.save(user);
+		Optional<User> updatedUser=Optional.of(user).map(x->{
+			if(!x.getPassword().isEmpty())
+				x.setPassword(passwordEncoder2.encode(x.getPassword()));
+			return x ;
+		});
+		return updatedUser.map(x->repo.save(updatedUser.get())).get();
 	}
 	
 	public void update(User user){
