@@ -1,6 +1,5 @@
-package com.example.demo;
+package com.example.demo.model;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -17,8 +16,8 @@ import lombok.Data;
 
 //Table - User
 @Entity
-//@Data
-@RedisHash
+@Data
+//@RedisHash
 public class User implements UserDetails {
 
 	/**
@@ -34,7 +33,6 @@ public class User implements UserDetails {
 
 	private String password;
 
-//	@Column(name = "account_non_locked")
 	private boolean accountNonLocked;
 
 	private boolean credentialsNonExpired;

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,7 +50,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .logout().invalidateHttpSession(true) 
         .clearAuthentication(true) .permitAll()
         .and()
-        .formLogin().loginProcessingUrl("/gotologin").
-        defaultSuccessUrl("/homepage.html", true);
+        .formLogin()
+//        .loginProcessingUrl("/gotologin")
+        .defaultSuccessUrl("/homepage.html", true);
     }
 }

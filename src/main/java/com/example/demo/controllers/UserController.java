@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.User;
+import com.example.demo.service.UserService;
+
 import static org.springframework.http.MediaType.*;
 
 import java.util.Optional;
@@ -21,7 +25,7 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
-	UserDAOService userservice;
+	UserService userservice;
 
 	@Autowired
 	RedisTemplate<String,Object> redisTemplate;

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.security;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import com.example.demo.model.User;
 
 @Component
 public class CustomAuthProvider implements AuthenticationProvider {

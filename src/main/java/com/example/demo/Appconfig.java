@@ -1,9 +1,9 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
@@ -14,6 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class Appconfig {
 
+	@Value("${redishosturl}") 
+	private String redishosturl;
+	
+	@Value("${redishostport}")
+	private String redisPort;
+	
 	   @Bean 
 	   public PasswordEncoder passwordEncoder() { 
 	      return new BCryptPasswordEncoder(); 
@@ -23,18 +29,10 @@ public class Appconfig {
 	      return new BCryptPasswordEncoder(); 
 	   }
 	   
-	   
-//	   @Bean
-//	   public JedisConnectionFactory redisConnectionFactory() {
-//		   JedisConnectionFactory factory=new JedisConnectionFactory();
-//		   factory.setHostName("20.172.134.86");
-//		factory.setPort(6379);
-//		return factory;
-//		   }
-	   
+	   	   
 	   @Bean
 	   public LettuceConnectionFactory redisConnectionFactory() {
-		return new LettuceConnectionFactory(new RedisStandaloneConfiguration("20.172.134.86", 6379));
+		return new LettuceConnectionFactory(new RedisStandaloneConfiguration(redishosturl, Integer.valueOf(redisPort)));
 		   
 	   }
 	   
