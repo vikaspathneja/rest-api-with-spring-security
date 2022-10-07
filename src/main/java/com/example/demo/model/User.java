@@ -17,12 +17,8 @@ import lombok.Data;
 //Table - User
 @Entity
 @Data
-@RedisHash("User")
 public class User implements UserDetails {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
