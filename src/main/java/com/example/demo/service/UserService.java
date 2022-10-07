@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -55,7 +56,7 @@ public class UserService implements UserDetailsService {
 	public void delete(long userid){
 		repo.deleteById(userid);
 	}
-	
+	@Cacheable(key = "#userid",value = "User")
 	public User getUser(long userid) {
 		Optional<User> uu=repo.findById(userid);
 		return uu.isPresent()==true?uu.get():null;

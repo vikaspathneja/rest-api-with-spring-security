@@ -33,7 +33,7 @@ public class UserController {
 	@PostMapping(path="/savetocache",produces = APPLICATION_JSON_VALUE)
 	public String saveUserInRedisCache(@RequestBody User user) {
 		try {
-		redisTemplate.opsForHash().put("User",user.getId(),user);
+		redisTemplate.opsForHash().put("CacheUser",user.getId(),user);
 		return "true";
 		}catch(Exception eee) {
 			eee.printStackTrace();
@@ -42,9 +42,9 @@ public class UserController {
 	}
 	@GetMapping(path="/getfromcache/{id}",produces = APPLICATION_JSON_VALUE)
 	public Object getUserFromRedisCache(@PathVariable(name="id") long id) {
-		System.out.println(redisTemplate.hasKey("User"));
+		System.out.println(redisTemplate.hasKey("CacheUser"));
 //		long id_in_long_value=id;
-		Object obj=redisTemplate.opsForHash().get("User",id);
+		Object obj=redisTemplate.opsForHash().get("CacheUser",id);
 		System.out.println(obj.toString());
 		if(obj instanceof User) {
 			System.out.println("object returned from cache success"+obj);
